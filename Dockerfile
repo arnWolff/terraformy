@@ -7,16 +7,16 @@ RUN apt-get update && \
 
 # Install Terraform
 ENV TERRAFORM_VERSION=1.0.11
-RUN curl -LO "https://releases.hashicorp.com/terraform/${TERRAFORM_VERSION}/terraform_${TERRAFORM_VERSION}_linux_amd64.zip" && \
-    unzip terraform_${TERRAFORM_VERSION}_linux_amd64.zip -d /usr/local/bin && \
-    rm terraform_${TERRAFORM_VERSION}_linux_amd64.zip
+RUN curl -LO "https://releases.hashicorp.com/terraform/1.4.6/terraform_1.4.6_linux_amd64.zip" && \
+    unzip terraform_1.4.6_linux_amd64.zip -d /usr/local/bin && \
+    rm terraform_1.4.6_linux_amd64.zip
 
 # Install CDK for Terraform CLI
-ENV CDKTF_VERSION=0.8.2
-RUN curl -LO "https://github.com/hashicorp/terraform-cdk/releases/download/v${CDKTF_VERSION}/cdktf-cli_${CDKTF_VERSION}_linux_amd64.tar.gz" && \
-    tar -xzf cdktf-cli_${CDKTF_VERSION}_linux_amd64.tar.gz && \
+ENV CDKTF_VERSION=0.16.1
+RUN curl -LO "https://github.com/hashicorp/terraform-cdk/archive/refs/tags/v0.16.1.tar.gz" && \
+    tar -xzf terraform-cdk-0.16.1.tar.gz && \
     mv cdktf /usr/local/bin && \
-    rm cdktf-cli_${CDKTF_VERSION}_linux_amd64.tar.gz
+    rm terraform-cdk-0.16.1.tar.gz
 
 # Install CDK for Terraform Python package
 RUN pip install cdktf==${CDKTF_VERSION}
